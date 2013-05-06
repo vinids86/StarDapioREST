@@ -2,6 +2,7 @@ package com.example.stardapio.dao;
 
 import java.util.ArrayList;
 
+import com.example.stardapio.bean.Bebida;
 import com.example.stardapio.bean.Item;
 import com.example.stardapio.bean.Menu;
 import com.example.stardapio.bean.Restaurant;
@@ -10,29 +11,33 @@ import com.example.stardapio.bean.Sobremesa;
 public class Banco {
 	private static Banco instance;
 	private ArrayList<Restaurant> listaRestaurantes;
-	private ArrayList<Item> listaItens;
 	private Menu menu;
 	private int idRestaurante;
-	private int idItem;
 
 	private Banco() {
 		idRestaurante = 1;
 		listaRestaurantes = new ArrayList<Restaurant>();
 		Restaurant restaurant = new Restaurant();
-		restaurant.setNome("CaradeFome");
+		restaurant.setNome("Cara de Fome");
 		restaurant.setEnd("La longe..");
 		restaurant.setPicRes(0);
 		inserirRestaurante(restaurant);
 
-		idItem = 1;
-		listaItens = new ArrayList<Item>();
-		Item item = new Sobremesa();
-		item.setNome("Construtor");
-		item.setDescricao("Desc Construtor");
-		item.setPreco("R$ Contrutor");
+		Item item1 = new Bebida();
+		item1.setNome("Construtor");
+		item1.setDescricao("Desc Construtor");
+		item1.setPreco("R$ Contrutor");
 		
+		Item item2 = new Sobremesa();
+		item2.setNome("Item2");
+		item2.setDescricao("Desc Item2");
+		item2.setPreco("Preco Item2");
+
 		menu = new Menu();
-		menu.addItem("Cara de Fome", item);
+		menu.addItem(item1);
+		menu.addItem(item2);
+		
+		restaurant.setMenu(menu);
 	}
 
 	public static Banco getBancoInstance() {
@@ -41,12 +46,20 @@ public class Banco {
 		return instance;
 	}
 
-	public ArrayList<Restaurant> getListaRestaurantes() {
-		return listaRestaurantes;
+	public Restaurant getMenu(String nomeRestaurante) {
+		Restaurant restaurante = null;
+		for (int i = 0; i < listaRestaurantes.size(); i++) {
+			if (listaRestaurantes.get(i).getNome().equals(nomeRestaurante)) {
+				restaurante = new Restaurant();
+				restaurante = listaRestaurantes.get(i);
+				break;
+			}
+		}
+		return restaurante;
 	}
 
-	public ArrayList<Item> getListaItens() {
-		return listaItens;
+	public ArrayList<Restaurant> getListaRestaurantes() {
+		return listaRestaurantes;
 	}
 
 	public String inserirRestaurante(Restaurant restaurant) {
@@ -67,12 +80,6 @@ public class Banco {
 		return restaurante;
 	}
 
-	public String inserirItem(Item item) {
-		item.setId(idItem++);
-		listaItens.add(item);
-		return "Item inserido no banco com sucesso!";
-	}
-
 	private int getPositionRestaurante(int id) {
 		int pos = -1;
 		for (int i = 0; i < listaRestaurantes.size(); i++) {
@@ -87,15 +94,10 @@ public class Banco {
 		Restaurant restaurante = buscarRestaurante(id);
 		int pos = getPositionRestaurante(id);
 		if (restaurante == null || pos < 0) {
-			return "Restaurante não encontrado!";
+			return "Restaurante nao encontrado!";
 		} else {
 			listaRestaurantes.remove(pos);
 			return "Restaurante removido com sucesso!";
 		}
-	}
-
-	public Menu getMenu(String restaurante, Item tipoItem) {
-		
-		return menu;
 	}
 }
