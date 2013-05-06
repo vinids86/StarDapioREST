@@ -8,8 +8,10 @@ public class Restaurant {
 	private String nome;
 	private String end;
 	private int picRes;
+	private Menu menu;
 
 	public Restaurant() {
+
 	}
 
 	// Inicialmente sera usado para identificar o restaurante nas chamadas ao WS
@@ -48,6 +50,14 @@ public class Restaurant {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 }
