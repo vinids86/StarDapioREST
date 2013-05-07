@@ -27,7 +27,7 @@ public class Banco {
 		item1.setNome("Construtor");
 		item1.setDescricao("Desc Construtor");
 		item1.setPreco("R$ Contrutor");
-		
+
 		Item item2 = new Sobremesa();
 		item2.setNome("Item2");
 		item2.setDescricao("Desc Item2");
@@ -36,7 +36,7 @@ public class Banco {
 		menu = new Menu();
 		menu.addItem(item1);
 		menu.addItem(item2);
-		
+
 		restaurant.setMenu(menu);
 	}
 
@@ -44,6 +44,18 @@ public class Banco {
 		if (instance == null)
 			instance = new Banco();
 		return instance;
+	}
+
+	public Restaurant getMenu(int idRestaurante) {
+		Restaurant restaurante = null;
+		for (int i = 0; i < listaRestaurantes.size(); i++) {
+			if (listaRestaurantes.get(i).getId() == idRestaurante) {
+				restaurante = new Restaurant();
+				restaurante = listaRestaurantes.get(i);
+				break;
+			}
+		}
+		return restaurante;
 	}
 
 	public Restaurant getMenu(String nomeRestaurante) {

@@ -30,11 +30,11 @@ public class MenuResource {
 	}
 
 	@GET
-	@Path("/GSON/{restaurante}")
+	@Path("/GSON/{id}")
 	@Produces("application/json")
-	public String getMenuGSON(@PathParam("restaurante") String nomeRestaurante) {
+	public String getMenuGSON(@PathParam("id") int idRestaurante) {
 		return new Gson().toJson(Banco.getBancoInstance()
-				.getMenu(nomeRestaurante).getMenu().getItens());
+				.getMenu(idRestaurante).getMenu().getItens());
 
 	}
 
