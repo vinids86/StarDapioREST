@@ -7,7 +7,7 @@ public class Restaurant {
 	private int id;
 	private String nome;
 	private String end;
-	private int picRes;
+	private String urlImage;
 	private Menu menu;
 
 	public Restaurant() {
@@ -36,12 +36,12 @@ public class Restaurant {
 		this.end = end;
 	}
 
-	public int getPicRes() {
-		return picRes;
+	public String getUrlImage() {
+		return urlImage;
 	}
 
-	public void setPicRes(int picRes) {
-		this.picRes = picRes;
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 
 	public int getId() {

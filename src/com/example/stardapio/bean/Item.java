@@ -10,7 +10,7 @@ public abstract class Item {
 	private String nome;
 	private String preco;
 	private String descricao;
-	private int picRes;
+	private String urlImage;
 
 	public Item() {
 	}
@@ -20,12 +20,12 @@ public abstract class Item {
 		return nome;
 	}
 
-	public int getPicRes() {
-		return picRes;
+	public String getUrlImage() {
+		return urlImage;
 	}
 
-	public void setPicRes(int picRes) {
-		this.picRes = picRes;
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 
 	public String getNome() {

@@ -20,18 +20,21 @@ public class Banco {
 		Restaurant restaurant = new Restaurant();
 		restaurant.setNome("Cara de Fome");
 		restaurant.setEnd("La longe..");
-		restaurant.setPicRes(0);
+		restaurant
+				.setUrlImage("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSTUs0ZA8AtFoRRQegl_HTvoTgLN6p-ut1PGCifjHaxqM3IFowHuQ");
 		inserirRestaurante(restaurant);
 
 		Item item1 = new Bebida();
 		item1.setNome("Construtor");
 		item1.setDescricao("Desc Construtor");
 		item1.setPreco("R$ Contrutor");
+		item1.setUrlImage("http://2.bp.blogspot.com/-83VtZbp1Joo/T7aXV3mzj-I/AAAAAAAAAc8/je3kozJm38Y/s1600/RGF_March2012.JPG");
 
 		Item item2 = new Sobremesa();
 		item2.setNome("Item2");
 		item2.setDescricao("Desc Item2");
 		item2.setPreco("Preco Item2");
+		item2.setUrlImage("http://3.bp.blogspot.com/-_LDEzGzFQ3Q/TqnbdmpCn_I/AAAAAAAAG_E/d4_saSViRWw/s1600/bipolar_tipo_2.gif");
 
 		menu = new Menu();
 		menu.addItem(item1);
