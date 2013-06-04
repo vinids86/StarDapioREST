@@ -71,7 +71,7 @@ public class Banco {
 			}
 		}
 		return restaurante;
-	}
+	}http://www.brilhofeminino.com.br/xmls/brilhofeminino.com.br_buscape.xml
 
 	public ArrayList<Restaurant> getListaRestaurantes() {
 		return listaRestaurantes;

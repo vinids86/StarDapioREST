@@ -9,6 +9,8 @@ public class Restaurant {
 	private String end;
 	private String urlImage;
 	private Menu menu;
+	private double lat;
+	private double lng;
 
 	public Restaurant() {
 
@@ -60,4 +62,20 @@ public class Restaurant {
 		this.menu = menu;
 	}
 
+	public double getLat() {
+		// TODO Auto-generated method stub
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
 }
