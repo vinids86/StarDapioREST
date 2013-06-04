@@ -1,10 +1,11 @@
 use stardapio;
-create table item (
-id bigint not null auto_increment,
-nome varchar(255) not null,
-preco numeric(6,2) not null,
-descricao varchar(255) not null,
-urlimage varchar(255) not null,
-primary key(id)
-)
-ENGINE=InnoDB;
+CREATE TABLE `item` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  `name` VARCHAR( 60 ) NOT NULL ,
+  `price` VARCHAR( 80 ) NOT NULL ,
+  `descriptiion` VARCHAR(300 ) NOT NULL ,
+  `urlImage` VARCHAR(300 ) NOT NULL ,
+  `id_restaurant` INT NOT NULL,
+   FOREIGN KEY (id_restaurant) REFERENCES restaurant(id_restaurant)
+)ENGINE=InnoDB;
+
