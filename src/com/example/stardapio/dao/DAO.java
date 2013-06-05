@@ -51,6 +51,8 @@ public class DAO {
 		return null;
 	}
 	
+	public String inserirItem
+	
 	public String inserirRestaurante(Restaurant restaurant) {
 		String sql = "insert into restaurant " +
 				"(name, address, lat, lng)" +
