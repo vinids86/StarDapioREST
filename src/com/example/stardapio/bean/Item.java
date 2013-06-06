@@ -4,13 +4,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 //Um item do cardapio
 @XmlRootElement
-public abstract class Item {
-	private String restaurante;
+public class Item {
 	private int id;
 	private String nome;
-	private String preco;
+	private double preco;
 	private String descricao;
 	private String urlImage;
+	private int idRestaurante;
+	private int idType;
 
 	public Item() {
 	}
@@ -36,11 +37,11 @@ public abstract class Item {
 		this.nome = nome;
 	}
 
-	public String getPreco() {
+	public double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
@@ -60,11 +61,16 @@ public abstract class Item {
 		this.id = id;
 	}
 
-	public String getRestaurante() {
-		return restaurante;
+	public int getIdRestaurante() {
+		return idRestaurante;
 	}
-
-	public void setRestaurante(String restaurante) {
-		this.restaurante = restaurante;
+	public void setIdRestaurante(int idRestaurante) {
+		this.idRestaurante = idRestaurante;
+	}
+	public int getIdType() {
+		return idType;
+	}
+	public void setIdType(int idType) {
+		this.idType = idType;
 	}
 }

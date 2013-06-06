@@ -1,5 +1,7 @@
 package com.example.stardapio.bean;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -8,7 +10,7 @@ public class Restaurant {
 	private String nome;
 	private String end;
 	private String urlImage;
-	private Menu menu;
+	private List<Item> itens;
 	private double lat;
 	private double lng;
 
@@ -16,7 +18,6 @@ public class Restaurant {
 
 	}
 
-	// Inicialmente sera usado para identificar o restaurante nas chamadas ao WS
 	@Override
 	public String toString() {
 		return nome;
@@ -54,14 +55,7 @@ public class Restaurant {
 		this.id = id;
 	}
 
-	public Menu getMenu() {
-		return menu;
-	}
-
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
-
+	
 	public double getLat() {
 		// TODO Auto-generated method stub
 		return lat;
@@ -77,5 +71,13 @@ public class Restaurant {
 
 	public void setLng(double lng) {
 		this.lng = lng;
+	}
+
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
 	}
 }
