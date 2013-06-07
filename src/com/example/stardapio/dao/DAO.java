@@ -21,7 +21,7 @@ public class DAO {
 
 
 	public List<Item> getMenu(int idRestaurante) {
-		String sql = "select * from item" +
+		String sql = "select * from item " +
 				"where id_restaurant = " + idRestaurante;
 		try {
 			List<Item> itens = new ArrayList<Item>();
