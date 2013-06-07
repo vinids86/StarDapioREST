@@ -9,7 +9,7 @@ public class ConnectionFactory {
 		try {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver()); //Essa linha foi a diferença
 			return DriverManager.getConnection(
-					"jdbc:mysql://localhost/stardapio", "root", "123456");
+					"jdbc:mysql://localhost/stardapio", "root", "stardapio2013");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
