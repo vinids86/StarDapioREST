@@ -1,0 +1,38 @@
+Arroz##
+Arroz Primavera##
+Baked Potato##
+Batata Frita##
+Batata Frita com Cheddar Picante e Bacon##
+Creme de Milho##
+Home Made Potato##
+Mini Burger##
+Onion Rings##
+Palmito Pupunha##
+Vegetais Grelhados##
+Yuppie##
+;
+/arquivos/cardapio/acompanhamento/thumb-arroz.jpg##
+/arquivos/cardapio/acompanhamento/thumb-arroz-primavera.jpg##
+/arquivos/cardapio/acompanhamento/thumb-baked-potato.jpg##
+/arquivos/cardapio/acompanhamento/thumb-batata-frita.jpg##
+/arquivos/cardapio/acompanhamento/thumb-batata-frita-com-cheddar-picante-e-bacon.jpg##
+/arquivos/cardapio/acompanhamento/thumb-creme-de-milho.jpg##
+/arquivos/cardapio/acompanhamento/thumb-home-made-potato.jpg##
+/arquivos/cardapio/acompanhamento/thumb-mini-burger.jpg##
+/arquivos/cardapio/acompanhamento/thumb-onion-rings.jpg##
+/arquivos/cardapio/acompanhamento/thumb-palmito-pupunha.jpg##
+/arquivos/cardapio/acompanhamento/thumb-vegetais-grelhados.jpg##
+/arquivos/cardapio/acompanhamento/thumb-yuppie.jpg##
+;
+Sem descricao##
+Sem descricao##
+Com molho de queijos e creme de gorgonzola.##
+Importada.##
+Importada.##
+Sem descricao##
+Deliciosa e exclusiva batata caseira com casca, acompanhada de molho TexMex.##
+Seis mini burgers preparados com queijos (cheddar, gorgonzola e prato), acompanhados de relish de pepino, maionese e molho barbecue.##
+Rodelas fritas de cebola empanada.##
+Assado com manteiga.##
+Abobrinha, berinjela, pimentão vermelho, cebola, cenoura e brócolis, acompanhados de potinho com molho à base de gengibre fresco, shoyu e cebolinha.##
+Salada de agrião, tomate cereja, mozzarella de búfala e cogumelos frescos com molho de azeite, limão e alcaparras.##
