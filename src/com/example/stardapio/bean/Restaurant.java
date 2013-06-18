@@ -1,63 +1,45 @@
 package com.example.stardapio.bean;
 
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Restaurant {
-	private int id;
-	private String nome;
-	private String end;
-	private String urlImage;
-	private List<Item> itens;
+	private int idRestaurant;
+	private String name;
+	private String address;
 	private double lat;
 	private double lng;
 
-	public Restaurant() {
-
-	}
-
 	@Override
 	public String toString() {
-		return nome;
+		return name;
 	}
 
-	public String getNome() {
-		return nome;
+	public int getIdRestaurant() {
+		return idRestaurant;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setIdRestaurant(int idRestaurant) {
+		this.idRestaurant = idRestaurant;
 	}
 
-	public String getEnd() {
-		return end;
+	public String getName() {
+		return name;
 	}
 
-	public void setEnd(String end) {
-		this.end = end;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getUrlImage() {
-		return urlImage;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	
 	public double getLat() {
-		// TODO Auto-generated method stub
 		return lat;
 	}
 
@@ -73,11 +55,5 @@ public class Restaurant {
 		this.lng = lng;
 	}
 
-	public List<Item> getItens() {
-		return itens;
-	}
-
-	public void setItens(List<Item> itens) {
-		this.itens = itens;
-	}
+	
 }

@@ -31,10 +31,10 @@ public class DAO {
 			
 			while(rs.next()) {
 				Item item = new Item();
-				item.setId(rs.getInt("id"));
-				item.setNome(rs.getString("name"));
-				item.setPreco(rs.getDouble("price"));
-				item.setDescricao(rs.getString("description"));
+				item.setIdItem(rs.getInt("id"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getDouble("price"));
+				item.setDescription(rs.getString("description"));
 				item.setUrlImage(rs.getString("urlImage"));
 				item.setIdRestaurante(rs.getInt("id_restaurant"));
 				item.setIdType(rs.getInt("id_type"));
@@ -59,9 +59,11 @@ public class DAO {
 
 			while (rs.next()) {
 				Restaurant restaurante = new Restaurant();
-				restaurante.setId(rs.getInt("id_restaurant"));
-				restaurante.setNome(rs.getString("name"));
-				restaurante.setEnd(rs.getString("address"));
+				restaurante.setIdRestaurant(rs.getInt("id_restaurant"));
+				restaurante.setName(rs.getString("name"));
+				restaurante.setAddress(rs.getString("address"));
+				restaurante.setLat(rs.getDouble("lat"));
+				restaurante.setLng(rs.getDouble("lng"));
 
 				restaurantes.add(restaurante);
 			}
@@ -81,9 +83,9 @@ public class DAO {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
-			stmt.setString(1, item.getNome());
-			stmt.setDouble(2, item.getPreco());
-			stmt.setString(3, item.getDescricao());
+			stmt.setString(1, item.getName());
+			stmt.setDouble(2, item.getPrice());
+			stmt.setString(3, item.getDescription());
 			stmt.setString(4, item.getUrlImage());
 			stmt.setInt(5, item.getIdRestaurante());
 			stmt.setInt(6, item.getIdType());
@@ -104,9 +106,9 @@ public class DAO {
 			Restaurant restaurante = new Restaurant();
 
 			while (rs.next()) {
-				restaurante.setId(rs.getInt("id_restaurant"));
-				restaurante.setNome(rs.getString("name"));
-				restaurante.setEnd(rs.getString("address"));
+				restaurante.setIdRestaurant(rs.getInt("id_restaurant"));
+				restaurante.setName(rs.getString("name"));
+				restaurante.setAddress(rs.getString("address"));
 			}
 			rs.close();
 			stmt.close();
@@ -123,8 +125,8 @@ public class DAO {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
-			stmt.setString(1, restaurant.getNome());
-			stmt.setString(2, restaurant.getEnd());
+			stmt.setString(1, restaurant.getName());
+			stmt.setString(2, restaurant.getAddress());
 			stmt.setDouble(3, restaurant.getLat());
 			stmt.setDouble(4, restaurant.getLng());
 

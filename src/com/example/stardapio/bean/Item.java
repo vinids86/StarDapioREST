@@ -5,10 +5,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 //Um item do cardapio
 @XmlRootElement
 public class Item {
-	private int id;
-	private String nome;
-	private double preco;
-	private String descricao;
+	private int idItem;
+	private String name;
+	private double price;
+	private String description;
 	private String urlImage;
 	private int idRestaurante;
 	private int idType;
@@ -18,7 +18,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return nome;
+		return name;
 	}
 
 	public String getUrlImage() {
@@ -29,36 +29,36 @@ public class Item {
 		this.urlImage = urlImage;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public double getPreco() {
-		return preco;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public int getId() {
-		return id;
+	public int getIdItem() {
+		return idItem;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
 	}
 
 	public int getIdRestaurante() {
