@@ -109,6 +109,8 @@ public class DAO {
 				restaurante.setIdRestaurant(rs.getInt("id_restaurant"));
 				restaurante.setName(rs.getString("name"));
 				restaurante.setAddress(rs.getString("address"));
+				restaurante.setLat(rs.getDouble("lat"));
+				restaurante.setLng(rs.getDouble("lng"));
 			}
 			rs.close();
 			stmt.close();
