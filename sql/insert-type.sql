@@ -1,7 +1,7 @@
 use stardapio;
 
 insert into type (type) values ('Saladas');
-insert into type (type) values ('Grelahdos');
+insert into type (type) values ('Grelhados');
 insert into type (type) values ('Pasta e Cia');
 insert into type (type) values ('Peixes');
 insert into type (type) values ('Sandwiches');
