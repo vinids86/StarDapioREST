@@ -15,8 +15,14 @@ public class MenuResource {
 	@Path("/GSON/{id}")
 	@Produces("application/json")
 	public String getMenuGSON(@PathParam("id") int idRestaurante) {
-		return new Gson().toJson(new DAO()
-				.getMenu(idRestaurante));
+		return new Gson().toJson(new DAO().getMenu(idRestaurante));
 
+	}
+
+	@GET
+	@Path("/types/{id}")
+	@Produces("application/json")
+	public String getType(@PathParam("id") int idRestaurante) {
+		return new Gson().toJson(new DAO().getType(idRestaurante));
 	}
 }

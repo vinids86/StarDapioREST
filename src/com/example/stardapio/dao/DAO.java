@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.example.stardapio.bean.Item;
 import com.example.stardapio.bean.Restaurant;
+import com.example.stardapio.bean.Type;
 import com.example.stardapio.jdbc.ConnectionFactory;
 
 public class DAO {
@@ -18,18 +19,46 @@ public class DAO {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 
+	public List<Type> getType(int idRestaurante) {
+		String sql = "select a.id_restaurant, b.`name` as 'name', a.id_type, c.`type` "
+				+ "from item as a  left join restaurant as b "
+				+ "on a.id_restaurant = b.id_restaurant left join `type` as c "
+				+ "on a.id_type = c.id_type  where a.id_restaurant = "
+				+ idRestaurante
+				+ " group by a.id_restaurant, b.`name`, a.id_type, c.`type`;";
+		try {
+			List<Type> types = new ArrayList<Type>();
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
 
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Type type = new Type();
+				type.setId_restaurant(rs.getInt("id_restaurant"));
+				type.setName(rs.getString("name"));
+				type.setId_type(rs.getInt("id_type"));
+				type.setType(rs.getString("type"));
+
+				types.add(type);
+			}
+			rs.close();
+			stmt.close();
+			return types;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	public List<Item> getMenu(int idRestaurante) {
-		String sql = "select * from item " +
-				"where id_restaurant = " + idRestaurante;
+		String sql = "select * from item " + "where id_restaurant = "
+				+ idRestaurante;
 		try {
 			List<Item> itens = new ArrayList<Item>();
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
-			
+
 			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				Item item = new Item();
 				item.setIdItem(rs.getInt("id"));
 				item.setName(rs.getString("name"));
@@ -38,7 +67,7 @@ public class DAO {
 				item.setUrlImage(rs.getString("urlImage"));
 				item.setIdRestaurante(rs.getInt("id_restaurant"));
 				item.setIdType(rs.getInt("id_type"));
-				
+
 				itens.add(item);
 			}
 			rs.close();
