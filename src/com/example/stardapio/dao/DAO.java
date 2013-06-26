@@ -20,7 +20,7 @@ public class DAO {
 	}
 
 	public List<Type> getType(int idRestaurante) {
-		String sql = "select a.id_restaurant, b.`name` as 'name', a.id_type, c.`type` "
+		String sql = "select a.id_restaurant, b.`name` as 'name', a.id_type, c.`type`, c.urlImage "
 				+ "from item as a  left join restaurant as b "
 				+ "on a.id_restaurant = b.id_restaurant left join `type` as c "
 				+ "on a.id_type = c.id_type  where a.id_restaurant = "
@@ -38,12 +38,42 @@ public class DAO {
 				type.setName(rs.getString("name"));
 				type.setId_type(rs.getInt("id_type"));
 				type.setType(rs.getString("type"));
+				type.setUrlImage(rs.getString("urlImage"));
 
 				types.add(type);
 			}
 			rs.close();
 			stmt.close();
 			return types;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<Item> getItemType(int idRestaurante, int idType) {
+		String sql = "select * from item " + "where id_restaurant = "
+				+ idRestaurante + " and id_type = " + idType;
+		try {
+			List<Item> itens = new ArrayList<Item>();
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Item item = new Item();
+				item.setIdItem(rs.getInt("id"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getDouble("price"));
+				item.setDescription(rs.getString("description"));
+				item.setUrlImage(rs.getString("urlImage"));
+				item.setIdRestaurante(rs.getInt("id_restaurant"));
+				item.setIdType(rs.getInt("id_type"));
+
+				itens.add(item);
+			}
+			rs.close();
+			stmt.close();
+			return itens;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
