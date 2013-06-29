@@ -11,6 +11,7 @@ import com.example.stardapio.bean.Item;
 import com.example.stardapio.bean.Restaurant;
 import com.example.stardapio.bean.Type;
 import com.example.stardapio.jdbc.ConnectionFactory;
+import com.google.gson.JsonElement;
 
 public class DAO {
 	private Connection connection;
@@ -48,6 +49,36 @@ public class DAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public List<Item> getItemTypeAndSubType(int idRestaurante, int idType) {
+		String sql = "select * from item " + "where id_restaurant = "
+				+ idRestaurante + " and id_type = " + idType;
+		try {
+			List<Item> itens = new ArrayList<Item>();
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Item item = new Item();
+				item.setIdItem(rs.getInt("id"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getDouble("price"));
+				item.setDescription(rs.getString("description"));
+				item.setUrlImage(rs.getString("urlImage"));
+				item.setIdRestaurante(rs.getInt("id_restaurant"));
+				item.setIdType(rs.getInt("id_type"));
+
+				itens.add(item);
+			}
+			rs.close();
+			stmt.close();
+			return itens;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	public List<Item> getItemType(int idRestaurante, int idType) {
@@ -197,6 +228,7 @@ public class DAO {
 			throw new RuntimeException(e);
 		}
 	}
+
 
 	/*
 	 * public void deleteRestaurante(int id) {
