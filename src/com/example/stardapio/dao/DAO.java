@@ -7,11 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.stardapio.bean.ContainerTypeAndSubType;
 import com.example.stardapio.bean.Item;
 import com.example.stardapio.bean.Restaurant;
+import com.example.stardapio.bean.SubType;
 import com.example.stardapio.bean.Type;
 import com.example.stardapio.jdbc.ConnectionFactory;
-import com.google.gson.JsonElement;
 
 public class DAO {
 	private Connection connection;
@@ -21,7 +22,7 @@ public class DAO {
 	}
 
 	public List<Type> getType(int idRestaurante) {
-		String sql = "select a.id_restaurant, b.`name` as 'name', a.id_type, c.`type`, c.urlImage "
+		String sql = "select a.id_restaurant, b.`name` as 'name', a.id_type, c.`type`, a.urlImage "
 				+ "from item as a  left join restaurant as b "
 				+ "on a.id_restaurant = b.id_restaurant left join `type` as c "
 				+ "on a.id_type = c.id_type  where a.id_restaurant = "
@@ -50,31 +51,38 @@ public class DAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public List<Item> getItemTypeAndSubType(int idRestaurante, int idType) {
-		String sql = "select * from item " + "where id_restaurant = "
-				+ idRestaurante + " and id_type = " + idType;
-		try {
-			List<Item> itens = new ArrayList<Item>();
-			PreparedStatement stmt = this.connection.prepareStatement(sql);
 
+	public ContainerTypeAndSubType getItemTypeAndSubType(int idRestaurante) {
+		String sql = "SELECT a.id_restaurant, b.`name` as 'name', a.id_type, c.`type`, d.id_sub_type, d.`type` "
+				+ "FROM item as a LEFT JOIN restaurant as b on a.id_restaurant = b.id_restaurant "
+				+ "LEFT JOIN `type` as c on a.id_type = c.id_type "
+				+ "LEFT JOIN `sub_type` as d on a.id_type = d.id_type "
+				+ "WHERE a.id_restaurant = "
+				+ idRestaurante
+				+ " AND id_sub_type != 'NULL' "
+				+ " GROUP BY a.id_restaurant, b.`name`, a.id_type, c.`type`, d.id_sub_type, d.`type`";
+		try {
+			ContainerTypeAndSubType container = new ContainerTypeAndSubType();
+			container.setTypes(getType(idRestaurante));
+			List<SubType> subTypes = new ArrayList<SubType>();
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Item item = new Item();
-				item.setIdItem(rs.getInt("id"));
-				item.setName(rs.getString("name"));
-				item.setPrice(rs.getDouble("price"));
-				item.setDescription(rs.getString("description"));
-				item.setUrlImage(rs.getString("urlImage"));
-				item.setIdRestaurante(rs.getInt("id_restaurant"));
-				item.setIdType(rs.getInt("id_type"));
-
-				itens.add(item);
+				SubType subType = new SubType();
+				subType.setId_restaurant(rs.getInt("id_restaurant"));
+				subType.setName(rs.getString("name"));
+				subType.setId_type(rs.getInt("id_type"));
+				subType.setType(rs.getString("type"));
+				subType.setidSubType(rs.getInt("id_sub_type"));
+				subTypes.add(subType);
 			}
+			container.setSubTypes(subTypes);
+			
 			rs.close();
 			stmt.close();
-			return itens;
+			
+			return container;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -228,7 +236,6 @@ public class DAO {
 			throw new RuntimeException(e);
 		}
 	}
-
 
 	/*
 	 * public void deleteRestaurante(int id) {

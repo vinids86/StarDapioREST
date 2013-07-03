@@ -4,17 +4,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class SubType extends Type {
-	private Type groupType;
+	private int idSubType;
 	
-	public SubType(Type type) {
-		groupType = type;
+	public int getidSubType() {
+		return idSubType;
 	}
 
-	public Type getGroupType() {
-		return groupType;
-	}
-
-	public void setGroupType(Type groupType) {
-		this.groupType = groupType;
+	public void setidSubType(int idSubType) {
+		this.idSubType = idSubType;
 	}
 }

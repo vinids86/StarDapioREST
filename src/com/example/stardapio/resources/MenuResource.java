@@ -34,9 +34,9 @@ public class MenuResource {
 	}
 	
 	@GET
-	@Path("/GSON/restaurant/{id_restaurant}/type/{id_type}")
+	@Path("/GSON/subtypes/restaurant/{id_restaurant}/")
 	@Produces("application/json")
-	public String getItemTypeAndSubType(@PathParam("id_restaurant") int idRestaurante, @PathParam("id_type") int idType) {
-		return new Gson().toJson(new DAO().getItemTypeAndSubType(idRestaurante, idType));
+	public String getItemTypeAndSubType(@PathParam("id_restaurant") int idRestaurante) {
+		return new Gson().toJson(new DAO().getItemTypeAndSubType(idRestaurante));
 	}
 }

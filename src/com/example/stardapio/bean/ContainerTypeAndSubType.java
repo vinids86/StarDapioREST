@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ContainerTypeAndSubType {
 	private List<Type> types;
-	private List<List<SubType>> subTypes;
+	private List<SubType> subTypes;
 
 	public List<Type> getTypes() {
 		return types;
@@ -17,11 +17,11 @@ public class ContainerTypeAndSubType {
 		this.types = types;
 	}
 
-	public List<List<SubType>> getSubTypes() {
+	public List<SubType> getSubTypes() {
 		return subTypes;
 	}
 
-	public void setSubTypes(List<List<SubType>> subTypes) {
+	public void setSubTypes(List<SubType> subTypes) {
 		this.subTypes = subTypes;
 	}
 }
