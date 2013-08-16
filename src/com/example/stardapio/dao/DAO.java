@@ -9,10 +9,12 @@ import java.util.List;
 
 import com.example.stardapio.bean.ContainerTypeAndSubType;
 import com.example.stardapio.bean.Item;
+import com.example.stardapio.bean.Pedido;
 import com.example.stardapio.bean.Restaurant;
 import com.example.stardapio.bean.SubType;
 import com.example.stardapio.bean.Type;
 import com.example.stardapio.jdbc.ConnectionFactory;
+import com.google.gson.JsonElement;
 
 public class DAO {
 	private Connection connection;
@@ -78,10 +80,10 @@ public class DAO {
 				subTypes.add(subType);
 			}
 			container.setSubTypes(subTypes);
-			
+
 			rs.close();
 			stmt.close();
-			
+
 			return container;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -232,6 +234,102 @@ public class DAO {
 
 			stmt.execute();
 			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void adicionaPedido(Pedido pedido) {
+		String sql = "insert into pedido "
+				+ "(id_cliente, id_restaurant, item, mesa)"
+				+ "values (?, ?, ?, ?)";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			List<Item> itens = pedido.getItens();
+			for (Item i : itens) {
+				stmt.setLong(1, pedido.getIdCliente());
+				stmt.setLong(2, pedido.getIdRestaurant());
+				stmt.setInt(3, i.getIdItem());
+				stmt.setLong(4, pedido.getMesa());
+			}
+
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<Pedido> getPedido(long idRestaurant, long mesa) {
+		String sql = "select * from pedido " + "where id_restaurant = "
+				+ idRestaurant + " and mesa = " + mesa;
+		try {
+			List<Pedido> pedidos = new ArrayList<Pedido>();
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Pedido pedido = new Pedido();
+				pedido.setIdCliente(rs.getLong("id_cliente"));
+				pedido.setIdRestaurant(rs.getLong("id_restaurant"));
+				pedido.addItem(getItem(rs.getLong("item")));
+				pedido.setMesa(rs.getLong("mesa"));
+				pedidos.add(pedido);
+			}
+			rs.close();
+			stmt.close();
+			return pedidos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private Item getItem(long id) {
+		String sql = "select * from item " + "where id = " + id;
+		try {
+			Item item = new Item();
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+
+				item.setIdItem(rs.getInt("id"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getDouble("price"));
+				item.setDescription(rs.getString("description"));
+				item.setUrlImage(rs.getString("urlImage"));
+				item.setIdRestaurante(rs.getInt("id_restaurant"));
+				item.setIdType(rs.getInt("id_type"));
+			}
+			rs.close();
+			stmt.close();
+			return item;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<Pedido> getPedido(long idRestaurant, long mesa, long idCliente) {
+		String sql = "select * from pedido " + "where id_restaurant = "
+				+ idRestaurant + " and mesa = " + mesa + " and id_cliente = "
+				+ idCliente;
+		try {
+			List<Pedido> pedidos = new ArrayList<Pedido>();
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Pedido pedido = new Pedido();
+				pedido.setIdCliente(rs.getLong("id_cliente"));
+				pedido.setIdRestaurant(rs.getLong("id_restaurant"));
+				pedido.addItem(getItem(rs.getLong("item")));
+				pedido.setMesa(rs.getLong("mesa"));
+				pedidos.add(pedido);
+			}
+			rs.close();
+			stmt.close();
+			return pedidos;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
